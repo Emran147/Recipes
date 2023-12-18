@@ -7,24 +7,33 @@ const app = express()
 const recipesbyingredients = 'https://recipes-goodness-elevation.herokuapp.com/recipes/ingredient/'
 const recipesbyID ='https://recipes-goodness-elevation.herokuapp.com/recipes/id/'
 
+
+dairyIngredients = ["Cream","Cheese","Milk","Butter","Creme","Ricotta","Mozzarella","Custard","Cream Cheese"]
+glutenIngredients = ["Flour","Bread","spaghetti","Biscuits","Beer"]
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : false}))
 
-//app.use(express.static(path.join(__dirname,'dist')))
-//app.use(express.static(path.join(__dirname,'node_modules')))
+app.use(express.static(path.join(__dirname,'dist')))
+app.use(express.static(path.join(__dirname,'node_modules')))
+
 
 
 app.get("/recipebyname/:recipeName", function(req, res) {
-    const gredient = req.params.recipeName;
+    const gredient = req.params.recipeName
+    let params = req.query
     axios.get(recipesbyingredients + gredient)
         .then((result) => {
-            res.send(filterFunc(result.data))
+            let newObj = filterFunc(result.data); 
+            res.send(newObj)
         })
         .catch((error) => {
             console.error("Error fetching data:", error)
             res.status(500).send("Error fetching data")
         })
 })
+
+
 
 app.get("/recipebyid/:recipeID", function(req, res) {
     const gredient = req.params.recipeID;
@@ -40,11 +49,11 @@ app.get("/recipebyid/:recipeID", function(req, res) {
 
 
 const filterIDsearch = function(data){
-    const newObj = {
+    return  {
         recipeTitle : data.title,
         reciperID : data.idMeal
     }
-    return newObj
+    
 }
 
 const filterFunc = function(data){
@@ -62,6 +71,34 @@ const filterFunc = function(data){
     })
     return newObj
 }
+
+
+
+const filtergluten = function(filteredObj) {
+    const newObj = {
+        result: filteredObj.result
+            .filter(recipe => isGlutenFreeRecipe(recipe))
+            .map(recipe => extractRecipeDetails(recipe))
+    };
+    return newObj;
+};
+
+
+const isGlutenFreeRecipe = recipe => {
+    return !glutenIngredients.some(glutenIngredient => recipe.ingredients.includes(glutenIngredient));
+};
+
+const extractRecipeDetails = recipe => {
+    return {
+        reciperID: recipe.idMeal,
+        recipeTitle: recipe.title,
+        ingredients: recipe.ingredients,
+        thumbnail: recipe.thumbnail,
+        href: recipe.href
+    };
+};
+
+
 
 app.get('/',function(req,res){
     res.send('hello brb')
