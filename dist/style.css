@@ -1,0 +1,10 @@
+.recipeImage{
+    height: 150px;
+    width: 150px;
+}
+
+.recipeContainer{
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+}

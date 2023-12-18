@@ -7,8 +7,43 @@
     <title>Document</title>
 </head>
 <body>
+  
+    <div class="searchDiv">
+        <input type="text" id="ingredientInput">
+        <button onclick="ingredientSearch()">search</button>
+     </div>
+     <label>
+        <input type="checkbox" id="checkbox1" value="option1" onclick="getCheckboxValues()"> gluteen free
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" id="checkbox2" value="option2" onclick="getCheckboxValues()"> dairy free
+    </label>
+
+     <script id="container-template" type="text/x-handlebars-template">
+        <div>
+            {{#each data}}
+            <div class="recipeContainer">
+               <a href="{{this.href}}"><h1>{{this.recipeTitle}}</h1></a>  
+               <img class="recipeImage" src="{{this.thumbnail}}" onclick="recipeImg('{{this.ingredients.[0]}}')" > 
+               <h3>ingredients</h3>
+                {{#each this.ingredients}}  
+                  <li>{{this}}</li>                     
+                {{/each}} 
+            </div>  
+            {{/each}}
+        </div>
+    </script>
     
+    
+    
+
+
+  <div id="container">
+</div>
     <script src="/jquery/dist/jquery.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="Render.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
