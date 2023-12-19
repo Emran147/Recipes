@@ -7,15 +7,12 @@ class Renderer {
         throw new Error('Container or template ID not found.')
       }
     }
-      render(dataObj) {       
+      render(dataArr) {       
       try {
-        console.log(dataObj.result)
         this.clearContainer()
         const compiledTemplate = Handlebars.compile(this.template);
-          const renderedHTML = compiledTemplate({
-          data: dataObj.result,
-        })
-  
+        console.log(dataArr)
+        const renderedHTML = compiledTemplate({dataArr})
         this.container.html(renderedHTML)
       } catch (error) {
         console.error('Rendering error:', error)
