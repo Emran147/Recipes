@@ -5,11 +5,7 @@ const axios = require("axios")
 const app = express()
 
 const recipesbyingredients = 'https://recipes-goodness-elevation.herokuapp.com/recipes/ingredient/'
-const recipesbyID ='https://recipes-goodness-elevation.herokuapp.com/recipes/id/'
 
-
-dairyIngredients = ["Cream","Cheese","Milk","Butter","Creme","Ricotta","Mozzarella","Custard","Cream Cheese"]
-glutenIngredients = ["Flour","Bread","spaghetti","Biscuits","Beer"]
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : false}))
@@ -19,9 +15,8 @@ app.use(express.static(path.join(__dirname,'node_modules')))
 
 
 
-app.get("/recipebyname/:recipeName", function(req, res) {
-    const gredient = req.params.recipeName
-    let params = req.query
+app.get("/recipebyname/:ingredient", function(req, res) {
+    const gredient = req.params.ingredient
     axios.get(recipesbyingredients + gredient)
         .then((result) => {
             let newObj = filterFunc(result.data); 
@@ -33,79 +28,32 @@ app.get("/recipebyname/:recipeName", function(req, res) {
         })
 })
 
-
-
-app.get("/recipebyid/:recipeID", function(req, res) {
-    const gredient = req.params.recipeID;
-    axios.get(recipesbyID + gredient)
-        .then((result) => {
-            res.send(filterIDsearch(result.data))
-        })
-        .catch((error) => {
-            console.error("Error fetching data:", error)
-            res.status(500).send("Error fetching data")
-        })
+app.post("/recipes",function( req , res  ){
+    const freeGlutenArr = filtergluten(req.body) 
+    res.send(freeGlutenArr) 
 })
 
 
-const filterIDsearch = function(data){
-    return  {
-        recipeTitle : data.title,
-        reciperID : data.idMeal
-    }
-    
-}
 
 const filterFunc = function(data){
- const newObj = {}
- newObj.result=[]
+ const filteredArr = []
     data.results.forEach(element => {
         let recipeObj={
-            reciperID : element.idMeal,
+            recipeID : element.idMeal,
             recipeTitle : element.title,
             ingredients : element.ingredients,
             thumbnail : element.thumbnail,
             href : element.href
         }      
-        newObj.result.push(recipeObj)
+        filteredArr.push(recipeObj)
     })
-    return newObj
+    return filteredArr
 }
-
-
-
-const filtergluten = function(filteredObj) {
-    const newObj = {
-        result: filteredObj.result
-            .filter(recipe => isGlutenFreeRecipe(recipe))
-            .map(recipe => extractRecipeDetails(recipe))
-    };
-    return newObj;
-};
-
-
-const isGlutenFreeRecipe = recipe => {
-    return !glutenIngredients.some(glutenIngredient => recipe.ingredients.includes(glutenIngredient));
-};
-
-const extractRecipeDetails = recipe => {
-    return {
-        reciperID: recipe.idMeal,
-        recipeTitle: recipe.title,
-        ingredients: recipe.ingredients,
-        thumbnail: recipe.thumbnail,
-        href: recipe.href
-    };
-};
-
 
 
 app.get('/',function(req,res){
     res.send('hello brb')
 })
-
-
-
 
 
 const port = 3000

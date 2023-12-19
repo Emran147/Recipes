@@ -7,4 +7,7 @@
     border: 2px;
     border-color: black;
     border-style: solid;
+    display: inline-block;
+    width: 30%;
+    height: fit-content;
 }

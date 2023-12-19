@@ -1,19 +1,27 @@
-
-
-const ingredientSearch =function(){
-    const ingredientInput = $('#ingredientInput').val() 
-    $.get(`/recipebyname/${ingredientInput}`).then((data)=>{
-        renderFunc(data)
-    })
+const dataArrange = new dataManger()
+ 
+const ingredientSearch = function() {
+    const ingredientInput = $('#ingredientInput').val();
+    $.get(`/recipebyname/${ingredientInput}`)
+        .then((data) => {
+            dataArrange.setRecipes(data)
+            renderFunc(data);
+        })
+        .catch((error) => {
+            console.error('Error fetching data:', error)
+        })
 }
+
+
 
 const getCheckboxValues = function() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const checkedValues = Array.from(checkboxes)
         .filter(checkbox => checkbox.checked)
         .map(checkbox => checkbox.value);
-    
-    console.log("Checked Values:", checkedValues);
+    if(checkedValues.includes('option1')){
+        renderFunc(dataArrange.getFreeGluten())
+    }    
 }
 
 const recipeImg= function(firstIngredient){
@@ -21,7 +29,7 @@ const recipeImg= function(firstIngredient){
 }
 
 
-const renderFunc = function(dataObj){
+const renderFunc = function(data){
     const renderer = new Renderer('container', 'container-template')
-    renderer.render(dataObj)
+    renderer.render(data)
   }
