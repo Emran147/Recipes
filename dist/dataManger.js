@@ -20,9 +20,14 @@ class dataManger {
 
     }
 
-    getHealthy(){
-
+    getFreeGlutenAndDairy() {
+        return this.recipes.filter(recipe => {
+            const isGlutenFree = !this.glutenIngredients.some(glutenIngredient => recipe.ingredients.includes(glutenIngredient));
+            const isDairyFree = !this.dairyIngredients.some(dairyIngredient => recipe.ingredients.includes(dairyIngredient));
+            return isGlutenFree && isDairyFree;
+        });
     }
+    
 
     setRecipes(recipes){
         this.recipes=recipes
