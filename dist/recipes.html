@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="searchDiv">
+    <header></header>   
+    <input type="text" id="ingredientInput">
+    <button onclick="searchBtn()">search</button>
+     </div>
+     <div class="checkBoxesDiv">
+    <label>
+        <input type="checkbox" id="checkbox1" value="option1" onclick="getCheckboxValues()"> gluteen free
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" id="checkbox2" value="option2" onclick="getCheckboxValues()"> dairy free
+    </label>
+    </div>
+
+<script id="recipes-template" type="text/x-handlebars-template">
+    <div>
+        {{#each dataArr}}
+        <div class="recipeContainer">
+            <a href="{{this.href}}"><h1>{{this.recipeTitle}}</h1></a>  
+            <img class="recipeImage" src="{{this.thumbnail}}" onclick="recipeImg('{{this.ingredients.[0]}}')"> 
+            <h3>Ingredients</h3>
+            <ul> 
+                {{#each ingredients}}  
+                    <li>{{this}}</li>
+                {{/each}} 
+            </ul>
+        </div>  
+        {{/each}}
+    </div>
+</script>  
+
+  <div id="container">
+</div>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="dataManger.js"></script>
+    <script src="Render.js"></script>
+    <script src="recipes.js"></script>
+</body>
+</html>

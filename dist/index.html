@@ -1,50 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="loginStyle.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-    <div class="searchDiv">
-    <header></header>   
-    <input type="text" id="ingredientInput">
-    <button onclick="searchBtn()">search</button>
-     </div>
-     <label>
-        <input type="checkbox" id="checkbox1" value="option1" onclick="getCheckboxValues()"> gluteen free
-    </label>
-    <br>
-    <label>
-        <input type="checkbox" id="checkbox2" value="option2" onclick="getCheckboxValues()"> dairy free
-    </label>
-<script id="container-template" type="text/x-handlebars-template">
-    <div>
-        {{#each dataArr}}
-        <div class="recipeContainer">
-            <a href="{{this.href}}"><h1>{{this.recipeTitle}}</h1></a>  
-            <img class="recipeImage" src="{{this.thumbnail}}" onclick="recipeImg('{{this.ingredients.[0]}}')"> 
-            <h3>Ingredients</h3>
-            <ul> 
-                {{#each ingredients}}  
-                    <li>{{this}}</li>
-                {{/each}} 
-            </ul>
-        </div>  
-        {{/each}}
-    </div>
-</script>
-     
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
 
+			<div class="signup">
+				<form>
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="txt" placeholder="User name" required="" id="username">
+					<input type="email" name="email" placeholder="Email" required="" id="email">
+					<input type="password" name="pswd" placeholder="Password" required="" id="password">
+					<button onclick="singup()">Sign up</button>
+				</form>
+			</div>
 
-  <div id="container">
-</div>
-    <script src="/jquery/dist/jquery.js"></script>
-    <script src="/handlebars/dist/handlebars.js"></script>
-    <script src="dataManger.js"></script>
-    <script src="Render.js"></script>
-    <script src="main.js"></script>
+			<div class="login">
+				<form>
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button onclick="checkLogin()">Login</button>
+				</form>
+			</div>
+	</div>
 </body>
+<script src="/jquery/dist/jquery.js"></script>
+<script src="/handlebars/dist/handlebars.js"></script>
+<script src="login.js"></script>
 </html>
