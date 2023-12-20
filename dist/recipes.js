@@ -4,7 +4,7 @@ const ingredientSearch = function(ingredientInput) {
     $.get(`/recipebyname/${ingredientInput}`)
         .then((data) => {
             dataArrange.setRecipes(data)
-            renderFunc(data);
+            renderFunc(data)                
         })
         .catch((error) => {
             console.error('Error fetching data:', error)
@@ -20,7 +20,7 @@ const searchBtn = function() {
     else{
     $('header').html(`${ingredientInput}`)
     ingredientSearch(ingredientInput);
-    clearCheckboxes(); // Call function to clear checkboxes
+    clearCheckboxes()
     }
 }
 
@@ -54,8 +54,8 @@ const recipeImg= function(firstIngredient){
     alert(firstIngredient)
 }
 
-
 const renderFunc = function(data){
-    const renderer = new Renderer('container', 'container-template')
+    const renderer = new Renderer('container', 'recipes-template')
     renderer.render(data)
   }
+
