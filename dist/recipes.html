@@ -7,7 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-
     <div class="searchDiv">
     <header></header>   
     <input type="text" id="ingredientInput">
@@ -27,7 +26,9 @@
     <div>
         {{#each dataArr}}
         <div class="recipeContainer">
-            <a href="{{this.href}}"><h1>{{this.recipeTitle}}</h1></a>  
+            <a href="{{this.href}}"><h1>{{this.recipeTitle}}</h1></a>
+            <h5> the chief is : {{this.name}}</h5>  
+            <h5> he got {{this.randomStar}} stars</h5>
             <img class="recipeImage" src="{{this.thumbnail}}" onclick="recipeImg('{{this.ingredients.[0]}}')"> 
             <h3>Ingredients</h3>
             <ul> 

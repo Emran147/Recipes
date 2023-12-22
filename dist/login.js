@@ -1,6 +1,6 @@
 
 const goInside = function(){
-    window.location.href = '\index.html';
+    window.location.href = "./recipes.html";
 }
  
 const singup = function(){
@@ -15,8 +15,8 @@ const singup = function(){
 }
 
 
-const addUser = function(username,email,password){
-    $.post('/users', {username : username , email : email , password : password} , function(response){
-            console.log(response)
-    } )
-}
+// const addUser = function(username,email,password){
+//     $.post('/users', {username : username , email : email , password : password} , function(response){
+//             console.log(response)
+//     } )
+// }
