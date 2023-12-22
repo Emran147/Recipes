@@ -1,7 +1,7 @@
 const {consts} = require('./config')
+const { faker } = require('@faker-js/faker');
 
 const arrangedArr = function(data){
-    console.log(dairyIngredients)
     const filteredArr = []
        data.results.forEach(element => {
            let recipeObj={
@@ -9,7 +9,10 @@ const arrangedArr = function(data){
                recipeTitle : element.title,
                ingredients : element.ingredients,
                thumbnail : element.thumbnail,
-               href : element.href
+               href : element.href,
+               name : faker.person.fullName(),
+               randomStar : faker.number.int({ max: 5 })
+
            }      
            filteredArr.push(recipeObj)
        })

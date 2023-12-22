@@ -1,15 +1,13 @@
 const dataArrange = new dataManger()
- 
+
 const ingredientSearch = function(ingredientInput) {
-    $.get(`/recipebyname/${ingredientInput}`)
-        .then((data) => {
-            dataArrange.setRecipes(data)
-            renderFunc(data)                
-        })
-        .catch((error) => {
-            console.error('Error fetching data:', error)
-        })
+    let sensArr = dataArrange.getSensitivityArr()
+    $.post(`/recipebyname/${ingredientInput}`,{ sensArr : JSON.stringify(sensArr)} , function(response){
+        renderFunc(response) 
+    } )
+        
 }
+
 
 const searchBtn = function() {
     const ingredientInput = $('#ingredientInput').val();
@@ -21,6 +19,7 @@ const searchBtn = function() {
     $('header').html(`${ingredientInput}`)
     ingredientSearch(ingredientInput);
     clearCheckboxes()
+    dataArrange.clearSensitivityArr()
     }
 }
 
@@ -37,16 +36,14 @@ const getCheckboxValues = function() {
     const checkedValues = Array.from(checkboxes)
         .filter(checkbox => checkbox.checked)
         .map(checkbox => checkbox.value)
-    if (checkedValues.includes('option1') && checkedValues.includes('option2')) {
-        renderFunc(dataArrange.getFreeGlutenAndDairy())
-    } else if (checkedValues.includes('option1')) {
-        renderFunc(dataArrange.getFreeGluten())
-    } else if (checkedValues.includes('option2')) {
-        renderFunc(dataArrange.getFreeDairy())
+        
+    if (checkedValues.includes('option1')) {
+        dataArrange.setSensitivity('gluten')
     }
-    else{
-        renderFunc(dataArrange.getRecipes())
+    if (checkedValues.includes('option2')) {
+        dataArrange.setSensitivity('dairy')
     }
+
 }
 
 
@@ -58,4 +55,3 @@ const renderFunc = function(data){
     const renderer = new Renderer('container', 'recipes-template')
     renderer.render(data)
   }
-
