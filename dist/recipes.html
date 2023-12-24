@@ -7,11 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+  
     <div class="searchDiv">
     <header></header>   
     <input type="text" id="ingredientInput">
     <button onclick="searchBtn()">search</button>
      </div>
+
+   
      <div class="checkBoxesDiv">
     <label>
         <input type="checkbox" id="checkbox1" value="option1" onclick="getCheckboxValues()"> gluteen free
@@ -21,7 +24,12 @@
         <input type="checkbox" id="checkbox2" value="option2" onclick="getCheckboxValues()"> dairy free
     </label>
     </div>
-
+    <div class="ingredientSplicer">
+        <p> Here you can write an ingredient that you do not want in your recipe </p>
+        <input type="text" placeholder="show recipes without this ingredient" class="ingredientSplicerInput">
+        <button>search</button>
+        
+    </div>
 <script id="recipes-template" type="text/x-handlebars-template">
     <div>
         {{#each dataArr}}

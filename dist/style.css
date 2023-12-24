@@ -11,3 +11,13 @@
     width: 30%;
     height: fit-content;
 }
+.ingredientSplicer{
+    display: inline-block;
+    position: absolute;
+    top :  -2%;
+    width: 50%;
+    left:  35%;
+}
+.ingredientSplicerInput{
+    width: 53%;
+}

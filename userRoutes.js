@@ -3,16 +3,18 @@ const userHandler = require('./userHandler');
 
 const router = express.Router();
 
-router.get('/', function(req, res) {
-    res.send(userHandler.getUsers());
+router.post('/checkuser', function(req, res) {
+    const user = req.body
+    let result = userHandler.checkuser(user)
+    console.log('this is the result from check user route',result)
+    res.send(result);
 });
 
-router.post('/', function(req, res) {
+router.post('/signUp', function(req, res) {
     const user = req.body;
-    userHandler.addUser(user);
-    console.log('succeeded');
-    console.log(userHandler.getUsers());
-    res.send(userHandler.getUsers());
-});
+    let result = userHandler.addUser(user);
+    console.log('this is the result from adding user route',result)
+    res.send(result);
+})
 
 module.exports = router;
