@@ -25,7 +25,7 @@ class Renderer {
     }
       clearContainer() {
       this.container.empty()
-      $('#ingredientInput').val('')
+    //  $('#ingredientInput').val('')
     }
   }
   
