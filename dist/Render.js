@@ -1,31 +1,35 @@
 class Renderer {
-    constructor(containerId, templateId) {
-      this.container = $(`#${containerId}`)
-      this.template = $(`#${templateId}`).html()
-  
-      if (!this.container.length || !this.template) {
-        throw new Error('Container or template ID not found.')
-      }
-    }
-      render(dataArr) {       
-      try {
-        if(dataArr.length>0){
-        this.clearContainer()
-        const compiledTemplate = Handlebars.compile(this.template);
-        console.log(dataArr)
-        const renderedHTML = compiledTemplate({dataArr})
-        this.container.html(renderedHTML)
-        }
-        else{
-         $('#container').append('<h1>there is no ingredient with this name </h1>') 
-        }
-      } catch (error) {
-        console.error('Rendering error:', error)
-      }
-    }
-      clearContainer() {
-      this.container.empty()
-    //  $('#ingredientInput').val('')
+  constructor(containerId, templateId) {
+    this.container = $(`#${containerId}`);
+    this.template = $(`#${templateId}`).html();
+    this.filtersContainer = $('.filterContainer');
+    if (!this.container.length || !this.template) {
+      throw new Error('Container or template ID not found.');
     }
   }
-  
+
+  render(dataArr, sensitivityArr) {
+    try {
+      this.clearContainer();
+      this.clearFilters();
+      console.log(dataArr)
+      const compiledTemplate = Handlebars.compile(this.template);
+      const context = {
+        dataArr: dataArr,
+        sensitivityArr: sensitivityArr
+      };
+      const renderedHTML = compiledTemplate(context);
+      this.container.html(renderedHTML);
+    } catch (error) {
+      console.error('Rendering error:', error);
+    }
+  }
+
+  clearContainer() {
+    this.container.empty();
+  }
+
+  clearFilters() {
+    this.filtersContainer.empty();
+  }
+}

@@ -1,6 +1,7 @@
 const express = require('express')
 const axiosManager = require('./axiosManager')
 const dataManager = require('./dataManager')
+const  consts  = require('./config')
 const router = express.Router()
 const SensitivityUtilities  = require('./recipesUtlities')
 
@@ -20,6 +21,12 @@ router.post("/:ingredient", function(req, res) {
         })
 })
 
+
+
+router.get("/getsensitives", function(req,res){
+    let sensitives = Object.keys(consts.sensitives)
+    res.send(sensitives)
+})
 
 
 
