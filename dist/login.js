@@ -1,6 +1,3 @@
-const goOut = function() {
-    window.location.href = "./index.html";
-};
 
 const saveUserInLocalStorage = function(user) {
     const userData = JSON.stringify(user);

@@ -8,46 +8,37 @@
 </head>
 <body>
   
+ 
     <div class="searchDiv">
-    <header></header>   
-    <input type="text" id="ingredientInput">
-    <button onclick="searchBtn()">search</button>
-     </div>
+        <input type="text" id="ingredientInput">
+    </div>  
+    
+    <div class="ingredientTitle">
+    </div>
 
-   
-     <div class="checkBoxesDiv">
-    <label>
-        <input type="checkbox" id="checkbox1" value="option1" onclick="getCheckboxValues()"> gluteen free
-    </label>
-    <br>
-    <label>
-        <input type="checkbox" id="checkbox2" value="option2" onclick="getCheckboxValues()"> dairy free
-    </label>
-    </div>
-    <div class="ingredientSplicer">
-        <p> Here you can write an ingredient that you do not want in your recipe </p>
-        <input type="text" placeholder="show recipes without this ingredient" class="ingredientSplicerInput">
-        <button>search</button>
-        
-    </div>
-<script id="recipes-template" type="text/x-handlebars-template">
-    <div>
+        <script id="recipes-template" type="text/x-handlebars-template">
+            <div id="filtersDiv">
+                {{#each sensitivityArr}}
+                <input type="checkbox" value="{{this}}" onclick="getCheckboxValues()">{{this}}
+                {{/each}}
+                <button class="button-89" onclick="searchBtn()">search</button>
+            </div>
+         
+
         {{#each dataArr}}
-        <div class="recipeContainer">
-            <a href="{{this.href}}"><h1>{{this.recipeTitle}}</h1></a>
-            <h5> the chief is : {{this.name}}</h5>  
-            <h5> he got {{this.randomStar}} stars</h5>
-            <img class="recipeImage" src="{{this.thumbnail}}" onclick="recipeImg('{{this.ingredients.[0]}}')"> 
-            <h3>Ingredients</h3>
-            <ul> 
-                {{#each ingredients}}  
-                    <li>{{this}}</li>
-                {{/each}} 
-            </ul>
-        </div>  
+            <div class="recipeContainer">
+                <a href="{{this.href}}"><h1>{{this.recipeTitle}}</h1></a>
+                <img class="recipeImage" src="{{this.thumbnail}}" onclick="recipeImg('{{this.ingredients.[0]}}')"> 
+                <h3>Ingredients</h3>
+                <ul> 
+                    {{#each this.ingredients}}  
+                        <li>{{this}}</li>
+                    {{/each}} 
+                </ul>
+            </div>  
         {{/each}}
-    </div>
-</script>  
+    </script>
+      
 
   <div id="container">
 </div>
