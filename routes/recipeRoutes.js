@@ -1,9 +1,9 @@
 const express = require('express')
-const axiosManager = require('./axiosManager')
-const dataManager = require('./dataManager')
-const  consts  = require('./config')
+const axiosManager = require('../axiosManager')
+const dataManager = require('../dataManager')
+const  consts  = require('../config')
 const router = express.Router()
-const SensitivityUtilities  = require('./recipesUtlities')
+const SensitivityUtilities  = require('../serverHandlers/recipesUtlities')
 
 
 router.post("/:ingredient", function(req, res) {

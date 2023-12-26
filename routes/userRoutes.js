@@ -1,11 +1,11 @@
 const express = require('express');
-const userHandler = require('./userHandler');
+const userHandler = require('../serverHandlers/userHandler');
 
 const router = express.Router();
 
 router.post('/checkuser', function(req, res) {
     const user = req.body
-    let result = userHandler.checkuser(user)
+    let result = userHandler.checkUser(user)
     console.log('this is the result from check user route',result)
     res.send(result);
 });

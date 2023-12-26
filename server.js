@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
-const recipeRoutes = require('./recipeRoutes');
-const userRoutes = require('./userRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
