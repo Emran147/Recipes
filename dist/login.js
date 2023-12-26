@@ -34,7 +34,7 @@ const signupHandler = function() {
 
     signUp(user)
         .then(response => {
-            alert(response.result);
+            alert(response.message);
         })
         .catch(error => {
             alert(error.message || 'An error occurred. Please try again.');
@@ -54,12 +54,12 @@ const loginHandler = function() {
     const user = { email, password };
 
     $.post('/users/checkuser', user)
-        .done(response => {
+        .then(response => {
             if (response.result) {
                 saveUserInLocalStorage(user);
                 goInside();
             } else {
-                alert('Login failed. Please try again.');
+                alert(response.message);
             }
         })
         .fail((jqXHR, textStatus, errorThrown) => {

@@ -1,4 +1,4 @@
-const  consts  = require('./config')
+const  consts  = require('../config')
 const sensitivesMap = consts.sensitives
 
 class SensitivityUtilities {
