@@ -11,13 +11,12 @@ class Renderer {
   render(dataArr, sensitivityArr) {
     try {
       this.clearContainer();
-      this.clearFilters();
       console.log(dataArr)
       const compiledTemplate = Handlebars.compile(this.template);
       const context = {
         dataArr: dataArr,
         sensitivityArr: sensitivityArr
-      };
+      }
       const renderedHTML = compiledTemplate(context);
       this.container.html(renderedHTML);
     } catch (error) {
@@ -29,7 +28,4 @@ class Renderer {
     this.container.empty();
   }
 
-  clearFilters() {
-    this.filtersContainer.empty();
-  }
 }

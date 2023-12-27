@@ -6,7 +6,11 @@ body{
 	align-items: center;
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
-	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+	background-image: url(https://c1.wallpaperflare.com/preview/683/704/892/turmeric-wood-table-texture.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	  background-position: center;
+	  background-size: cover;
 }
 .main{
 	width: 350px;
