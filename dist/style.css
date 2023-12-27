@@ -1,157 +1,68 @@
-
-* {
-    box-sizing: border-box;
+body{
+    background-image: url(https://c0.wallpaperflare.com/preview/839/412/980/food-and-drink-pizza-pizzas-tomato.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	  background-position: center;
+	  background-size: cover;
 }
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: green;
-    color: #333;
-
-}
-
-/* Header styles */
-.ingredientTitle {
-    font-size: 24px;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    display: flex;
-    padding: 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-}
-
-/* Search container styles */
-.searchDiv {
+#container{
     position: relative;
-    left: 10%;
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    width: 80%;
+    height: fit-content;
+    margin-right: 10%;
+    margin-left: 10%;
+
 }
-
-/* Form styles */
-#searchForm {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.searchDiv{
+    margin: 1%;
+    padding: 1%;
+    width: 45%;
+    height: fit-content;
+    position: relative;
+    display: inline;
 }
-
-#ingredientInput {
-    flex: 1;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-
-/* Main content styles */
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Filters and recipes container */
-
-#container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+#ingredientInput{
+    margin: 1%;
+    margin-left: 1%;
 }
 #filtersDiv{
-    width: fit-content;
-    margin: 0 auto;
-    padding: 5px;
-    position: absolute;
-    height: fit-content;
-    top: 2.5%;
-    margin-left: 18%;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    margin: 1%;
+    padding: 1%;
+    width: 30%;
+    margin-top: 1.5%;
 }
-
-/* Recipe container styles */
-.recipeContainer {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+.recipeContainer{
+    border-style: solid;
+    border-radius: 2px;
+    border-color: #eee;
+    box-shadow: 8px 8px 2px 1px rgba(0, 0, 255, .2);    margin: 2%;
+    min-height: 780px;
+    padding: 10px;
+    width: 260;
 }
-
-.recipeContainer a {
-    text-decoration: none;
-    color: #333;
-}
-
-.recipeContainer h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.recipeImage {
+.recipeImage{
+    height: 200px;
     width: 200px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 4px;
-    cursor: pointer;
 }
-
-.recipeImage:hover {
+.recipes-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    background-color: honeydew;
+}
+.header{
+    border-radius: 25px;
+    display: flex;
+    background-color:#eee;
     opacity: 0.8;
+    margin-bottom: 2%;
+    
 }
-
-/* Ingredient list styles */
-ul {
-    list-style: none;
-    padding-left: 20px;
+.button{
+    margin-left: 2%;
 }
-
-li {
-    margin-bottom: 6px;
+#linktoyoutube{
+    margin-top: 10%;
 }
-
-
-
-/* CSS */
-.button-89 {
-  --b: 3px;   /* border thickness */
-  --s: .45em; /* size of the corner */
-  --color: #373B44;
-  
-  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-  color: var(--color);
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .6em;
-  font-size: 16px;
-
-  border: 0;
-
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-89:hover,
-.button-89:focus-visible{
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: .05em;
-}
-
-.button-89:active {
-  background: var(--color);
-  color: #fff;
+h1{
+    margin-bottom: 15%;
 }

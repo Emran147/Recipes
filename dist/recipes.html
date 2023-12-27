@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
   
  
-    <div class="searchDiv">
-        <input type="text" id="ingredientInput">
-    </div>  
-    
-    <div class="ingredientTitle">
-    </div>
-
-        <script id="recipes-template" type="text/x-handlebars-template">
+    <script id="recipes-template" type="text/x-handlebars-template">
+        <div class="header">
+            <div class="searchDiv">
+                Enter A ingredient that you are  searching for 
+                <input type="text" id="ingredientInput">
+            </div>  
+            
             <div id="filtersDiv">
                 {{#each sensitivityArr}}
                 <input type="checkbox" value="{{this}}" onclick="getCheckboxValues()">{{this}}
                 {{/each}}
-                <button class="button-89" onclick="searchBtn()">search</button>
+                <button class="button" onclick="searchBtn()">search</button>
+                
             </div>
-         
-
+        </div>
+            <div class="recipes-container">
         {{#each dataArr}}
             <div class="recipeContainer">
-                <a href="{{this.href}}"><h1>{{this.recipeTitle}}</h1></a>
+                <h1>{{this.recipeTitle}}</h1>
                 <img class="recipeImage" src="{{this.thumbnail}}" onclick="recipeImg('{{this.ingredients.[0]}}')"> 
+                <a  href="{{this.href}}"><button id="linktoyoutube" style="font-size:14px">go to youtube <i class="fa fa-youtube-play"></i></button>
+                </a>
                 <h3>Ingredients</h3>
                 <ul> 
                     {{#each this.ingredients}}  
@@ -36,12 +39,13 @@
                     {{/each}} 
                 </ul>
             </div>  
-        {{/each}}
+            {{/each}}
+        </div>
     </script>
       
 
   <div id="container">
-</div>
+</div> 
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/handlebars/dist/handlebars.js"></script>
     <script src="dataManger.js"></script>

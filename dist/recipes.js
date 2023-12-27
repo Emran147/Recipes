@@ -17,10 +17,10 @@ const searchBtn = function() {
         alert('check the input')
     }
     else{
-    $('.ingredientTitle').html(ingredientInput)    
-    ingredientSearch(ingredientInput)
-    clearCheckboxes()
-    dataArrange.clearActiveSensitivityArr()
+        ingredientSearch(ingredientInput)     
+        $('.ingredientTitle').html(ingredientInput)   
+        clearCheckboxes()
+        dataArrange.clearActiveSensitivityArr()
     }
 }
 
