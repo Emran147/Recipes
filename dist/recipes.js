@@ -1,24 +1,46 @@
 const dataArrange = new dataManger()
+let numberOfItemsInPage = 5
+let startItem =0 
 
 const ingredientSearch = function(ingredientInput) {
     let sensArr = dataArrange.getActiveSensitivityArr()
     $.post(`/recipebyname/${ingredientInput}`,{ sensArr : JSON.stringify(sensArr)} , function(response){
-        renderFunc(response,dataArrange.getSensitivityArr()) 
+        let recipes = []
+        if(response.length>5)
+        {   
+                  recipes = response.slice(startItem,numberOfItemsInPage)
+        }
+         else {
+            recipes = response
+         }
+        renderFunc(recipes,dataArrange.getSensitivityArr()) 
     } )
         
 }
 
- 
+const nextFunc = function(){
+    numberOfItemsInPage+=5
+    startItem+=5
+    ingredientSearch(dataArrange.getIngredient())
+
+}
+const previuosFunc= function(){
+    numberOfItemsInPage-=5
+    startItem-=5
+    ingredientSearch(dataArrange.getIngredient())
+
+}
+
 
 const searchBtn = function() {
     const ingredientInput = $('#ingredientInput').val()
+    dataArrange.setIngredient(ingredientInput)
     if (!ingredientInput.replace(/\s/g, '').length)
     {
         alert('check the input')
     }
     else{
         ingredientSearch(ingredientInput)     
-        $('.ingredientTitle').html(ingredientInput)   
         clearCheckboxes()
         dataArrange.clearActiveSensitivityArr()
     }

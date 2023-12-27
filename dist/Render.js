@@ -27,5 +27,6 @@ class Renderer {
   clearContainer() {
     this.container.empty();
   }
+  
 
 }
