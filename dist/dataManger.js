@@ -3,6 +3,13 @@ class dataManger {
     constructor(){
         this.activeSensitivityArr=[]
         this.sensitivityArr=[]
+        this.ingredient=''
+    }
+    setIngredient(Ingredient){
+        this.ingredient=Ingredient
+    }
+    getIngredient(){
+        return this.ingredient
     }
     
     setSensitivity(sensitivity){

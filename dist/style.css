@@ -42,6 +42,7 @@ body{
 .recipeImage{
     height: 200px;
     width: 200px;
+    
 }
 .recipes-container{
     display: grid;

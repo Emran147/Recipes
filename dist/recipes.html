@@ -22,16 +22,17 @@
                 <input type="checkbox" value="{{this}}" onclick="getCheckboxValues()">{{this}}
                 {{/each}}
                 <button class="button" onclick="searchBtn()">search</button>
-                
+                <button onclick="nextFunc()">next </button><button onclick="previuosFunc()">previuos </button>
             </div>
         </div>
             <div class="recipes-container">
         {{#each dataArr}}
             <div class="recipeContainer">
                 <h1>{{this.recipeTitle}}</h1>
-                <img class="recipeImage" src="{{this.thumbnail}}" onclick="recipeImg('{{this.ingredients.[0]}}')"> 
+                <img src="{{this.thumbnail}}"  class="recipeImage" />
                 <a  href="{{this.href}}"><button id="linktoyoutube" style="font-size:14px">go to youtube <i class="fa fa-youtube-play"></i></button>
                 </a>
+                <a href="mailto:sales@sender.net?subject=Check%20out%20this%20recipe!%20{{this.recipeTitle}}&body=you%20can%20see%20this%20recipe%20in%20this%20video%20:%20{{this.href}}"><button>share via email</button> </a>
                 <h3>Ingredients</h3>
                 <ul> 
                     {{#each this.ingredients}}  

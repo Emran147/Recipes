@@ -1,17 +1,24 @@
-const arrangedArr = function(data){
+const axiosManager = require('./axiosManager')
+
+const arrangedArr = function(data,result2){
     const filteredArr = []
-       data.results.forEach(element => {
-           let recipeObj={
-               recipeID : element.idMeal,
-               recipeTitle : element.title,
-               ingredients : element.ingredients,
-               thumbnail : element.thumbnail,
-               href : element.href,
-           }      
-           filteredArr.push(recipeObj)
-       })
+     for (let index = 0; index < data.results.length; index++) {
+        let recipeObj={
+            recipeID : data.results[index].idMeal,
+            recipeTitle : data.results[index].title,
+            ingredients : data.results[index].ingredients,
+            thumbnail : result2.data.data[index].url,
+            href : data.results[index].href,
+        } 
+        filteredArr.push(recipeObj)
+
+     }  
+
+
        return filteredArr
    }
+
+
 
    module.exports = {
     arrangedArr: arrangedArr,
