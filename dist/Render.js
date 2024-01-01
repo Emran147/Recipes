@@ -11,7 +11,6 @@ class Renderer {
   render(dataArr, sensitivityArr) {
     try {
       this.clearContainer();
-      console.log(dataArr)
       const compiledTemplate = Handlebars.compile(this.template);
       const context = {
         dataArr: dataArr,
